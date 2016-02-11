@@ -16,6 +16,7 @@
         nextLinkHtml: 'Next &rarr;',
         prevLinkHtml: '&larr; Prev',
         disableTimepicker: false,
+        refreshOnShown:false,
         disableClearButton: false,
         defaultTime: null,
         dayAbbreviations: ["Su", "M", "Tu", "W", "Th", "F", "Sa"],
@@ -56,6 +57,7 @@
         require: "?ngModel",
         scope: {
           dateFilter: '=?',
+          refreshOnShown: '=?',
           onChange: "&",
           required: '@'
         },
@@ -269,6 +271,7 @@
             var dateInput;
             if (newVal) {
               dateInput = angular.element(element[0].querySelector(".quickdate-date-input"))[0];
+              if (!!scope.refreshOnShown) { refreshView(); }
               return dateInput.select();
             }
           });
